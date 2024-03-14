@@ -15,10 +15,10 @@ function output($data)
 
 <head>
   <meta charset=utf-8>
-  <title>Voidem Portfolio</title>
-  <meta name="description" content="Voidem's Portfolio">
+  <title>Voidem</title>
+  <meta name="description" content="Voidem's Website">
   <meta name="author" content="Voidem">
-  <meta name="keywords" content="Voidem, Portfolio, Voidem Portfolio, Voidem's Portfolio">
+  <meta name="keywords" content="Voidem, Personal Website, Voidem Website, Voidem's Website">
   <meta name=viewport content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="assets/styles.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
