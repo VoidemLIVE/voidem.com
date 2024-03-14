@@ -23,22 +23,22 @@ function output($data)
   <link rel="stylesheet" href="assets/styles.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <link rel="icon" type="image/x-icon" href="https://gravatar.com/avatar/05a0fe1e2580f4cc2a5e1f32d482530ef5aee5b89a93ce71bd315a780b1412bf">
+  <link rel="icon" type="image/x-icon" href="assets/pfpNoBG.png">
 </head>
 <body>
 
   <div class="frontPageDiv">
     <div class="voidem-text">Voidem</div>
-    <img src="https://gravatar.com/avatar/05a0fe1e2580f4cc2a5e1f32d482530ef5aee5b89a93ce71bd315a780b1412bf" alt="Picture of me" class="profilePicture">
+    <img src="assets/pfp.png" alt="Picture of me" class="profilePicture">
     <div class="social-images">
       <div class="social-image">
         <a href="https://github.com/voidemlive" target="#"><img src="assets/github.png" alt="Github Logo" style="filter: invert(100%)"></a>
       </div>
       <div class="social-image">
-        <a href="https://support.voidem.com" target="#"><img src="assets/discord.png" alt="Discord Logo" style="filter: invert(100%)"></a>
+        <a href="https://dsc.bio/voidemlive" target="#"><img src="assets/discord.png" alt="Discord Logo" style="filter: invert(100%)"></a>
       </div>
       <div class="social-image">
-        <a href=""><img src="assets/steam.png" alt="Steam Logo" style="filter: invert(100%)"></a>
+        <a href="https://steamcommunity.com/id/VoidemLIVE/" target="#"><img src="assets/steam.png" alt="Steam Logo" style="filter: invert(100%)"></a>
       </div>
     </div>
     <div class="particle-overlay" id="particles-js"></div>
