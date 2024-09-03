@@ -15,10 +15,11 @@ function output($data)
 <head>
   <meta charset="utf-8">
   <title>Voidem</title>
-  <meta name="description" content="Voidem's Website">
+  <meta name="description" content="Welcome to Voidem's website, showcasing Voidem's experience and skills.">
   <meta name="author" content="Voidem">
-  <meta name="keywords" content="Voidem, Personal Website, Voidem Website, Voidem's Website">
+  <meta name="keywords" content="Voidem, VoidemLIVE, Personal Website, Web Development, Minecraft Plugins, Java, PHP, HTML, CSS, SQL, Python, JavaScript">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="assets/styles.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -33,7 +34,7 @@ function output($data)
         <a href="https://github.com/voidemlive" target="#"><img src="assets/github.png" alt="Github Logo" style="filter: invert(100%)"></a>
       </div>
       <div class="social-image">
-        <a href="https://dsc.bio/voidemlive" target="#"><img src="assets/discord.png" alt="Discord Logo" style="filter: invert(100%)"></a>
+        <a href="https://discord.com/users/547439411856408576" target="#"><img src="assets/discord.png" alt="Discord Logo" style="filter: invert(100%)"></a>
       </div>
       <div class="social-image">
         <a href="https://steamcommunity.com/id/VoidemLIVE/" target="#"><img src="assets/steam.png" alt="Steam Logo" style="filter: invert(100%)"></a>
