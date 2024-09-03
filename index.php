@@ -37,7 +37,7 @@ function output($data)
         <a href="https://discord.com/users/547439411856408576" target="#"><img src="assets/discord.png" alt="Discord Logo" style="filter: invert(100%)"></a>
       </div>
       <div class="social-image">
-        <a href="https://steamcommunity.com/id/VoidemLIVE/" target="#"><img src="assets/steam.png" alt="Steam Logo" style="filter: invert(100%)"></a>
+        <a href="https://steamcommunity.com/id/VoidemLIVE/myworkshopfiles/" target="#"><img src="assets/steam.png" alt="Steam Logo" style="filter: invert(100%)"></a>
       </div>
     </div>
   </div>
