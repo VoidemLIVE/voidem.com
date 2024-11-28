@@ -1,5 +1,5 @@
 <?php
-function output($data): void
+function output($data)
 {
   echo "<script>console.log('PHP: " . $data . "');</script>";
 }
