@@ -52,6 +52,7 @@ function output($data): void
             style="filter: invert(100%)" /></a>
       </div>
     </div>
+    <?php include 'listening.php'; ?>
   </div>
   <div class="nextPage">
     <section class="timeline">
