@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: transparent !important;
+    overflow: hidden;
+    width: 1920px;
+    height: 1080px;
+  }
+
+  .widget {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: rgba(8, 8, 8, 0.85);
+    border: 0.5px solid rgba(255,255,255,0.09);
+    border-radius: 14px;
+    padding: 16px 22px;
+    min-width: 360px;
+    max-width: 500px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    overflow: hidden;
+  }
+
+  .widget.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .widget::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: #dce8ff;
+    opacity: 0.45;
+    border-radius: 2px 0 0 2px;
+  }
+
+  #albumArt {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    background: #111;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 0.5px solid rgba(255,255,255,0.08);
+  }
+
+  #albumArt img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .status {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    color: rgba(255,255,255,0.28);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #368b5d;
+    flex-shrink: 0;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .dot.idle {
+    animation: none;
+    opacity: 0.2;
+  }
+
+  .idleText {
+    color: rgba(255,255,255,0.55) !important;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.75; }
+    50%       { opacity: 0.15; }
+  }
+
+  #trackName {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.93);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.25;
+  }
+
+  #trackArtist {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.38);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 3px;
+  }
+
+  .divider {
+    width: 0.5px;
+    height: 36px;
+    background: rgba(255,255,255,0.1);
+    flex-shrink: 0;
+  }
+
+  .spotify-logo {
+    flex-shrink: 0;
+    opacity: 0.45;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="widget" id="widget">
+  <div id="albumArt"></div>
+  <div class="info">
+    <div class="status">
+      <div class="dot" id="dot"></div>
+      <span id="statusTxt">now playing</span>
+    </div>
+    <div id="trackName">—</div>
+    <div id="trackArtist">—</div>
+  </div>
+  <div class="spotify-logo">
+    <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#ffffff" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.516 17.32a.748.748 0 0 1-1.029.25c-2.817-1.722-6.362-2.112-10.54-1.157a.749.749 0 0 1-.333-1.461c4.571-1.044 8.492-.594 11.653 1.339a.748.748 0 0 1 .249 1.029zm1.472-3.27a.936.936 0 0 1-1.287.308c-3.225-1.982-8.141-2.557-11.956-1.399a.936.936 0 1 1-.543-1.79c4.358-1.322 9.776-.682 13.478 1.594a.937.937 0 0 1 .308 1.287zm.127-3.404C15.37 8.453 9.386 8.25 5.852 9.337a1.123 1.123 0 1 1-.652-2.148c4.099-1.245 10.913-1.004 15.213 1.57a1.124 1.124 0 0 1-1.298 1.838v-.001z"/>
+    </svg>
+  </div>
+</div>
+
+<script>
+  async function poll() {
+    try {
+      const res = await fetch('twitch-data.php');
+      const data = await res.json();
+      const playing = data.playing === true;
+      const trackNameEl = document.getElementById('trackName');
+      const trackArtistEl = document.getElementById('trackArtist');
+      const statusTxtEl = document.getElementById('statusTxt');
+      const dotEl = document.getElementById('dot');
+      const albumArtEl = document.getElementById('albumArt');
+
+      if (!playing) {
+        trackNameEl.textContent = 'not playing';
+        trackArtistEl.textContent = '';
+        statusTxtEl.textContent = 'not playing';
+        dotEl.className = 'dot idle';
+        trackNameEl.classList.add('idleText');
+        trackArtistEl.classList.add('idleText');
+        albumArtEl.innerHTML = '';
+        document.getElementById('widget').classList.add('visible');
+        return;
+      }
+
+      trackNameEl.classList.remove('idleText');
+      trackArtistEl.classList.remove('idleText');
+      trackNameEl.textContent = data.trackName || '—';
+      trackArtistEl.textContent = data.artist || '—';
+      statusTxtEl.textContent = data.status || 'now playing';
+      dotEl.className = 'dot';
+
+      const img = data.image || '';
+      albumArtEl.innerHTML = img ? '<img src="' + img + '" />' : '';
+
+      document.getElementById('widget').classList.add('visible');
+    } catch (e) {}
+  }
+
+  poll();
+  setInterval(poll, 5000);
+</script>
+
+</body>
+</html>
